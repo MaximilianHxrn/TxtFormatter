@@ -10,7 +10,7 @@ ApplicationPath
 array
 ArrayLen
 Automation
-Break
+.Break
 CalcDate
 CalcField
 CalcFields
@@ -68,7 +68,6 @@ Duplicate
 DWY2Date
 Erase
 Error
-Evaluate
 Exists
 FieldError
 FieldExist
