@@ -122,7 +122,6 @@ IsTime
 IsTransactionType
 Mark
 MarkedOnly
-Message
 Modify
 ModifyAll
 Next
