@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -68,7 +69,10 @@ public class Formatter {
     public static void main(String[] args) {
         // Copied from:
         // https://stackoverflow.com/questions/3154488/how-do-i-iterate-through-the-files-in-a-directory-in-java
-        File[] directoryListing = new File("H:\\Repository\\mrd-al - Kopie\\Objects").listFiles();
+        Scanner input = new Scanner(System.in);
+        System.out.println("Paste directory path here: ");
+        File[] directoryListing = new File(input.nextLine()).listFiles();
+        input.close();
         if (directoryListing != null) {
             for (File child : directoryListing) {
                 if (child.isDirectory()) {
@@ -79,6 +83,7 @@ public class Formatter {
                 processFile(child);
             }
         }
+        System.out.println("Done");
     }
 
     private static void processFile(File file) {
