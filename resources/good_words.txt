@@ -2,6 +2,7 @@ sorting
 where
 const
 Abs
+Action
 action
 Activate
 Active
@@ -81,6 +82,7 @@ ClosingDate
 ClosingDates
 Clustered
 Code
+Codeunit
 CodeCoverageLog
 Codeunit
 CommandLine
@@ -145,7 +147,7 @@ DefaultClientType
 DefaultFieldsValidation
 DelayedInsert
 DelChr
-Delete
+.Delete
 DeleteAll
 DeleteAllowed
 DeleteLink
@@ -159,7 +161,7 @@ Direction
 Div
 Divisor
 DMY2Date
-Do
+do
 Download
 DownloadFromStream
 DownTo
@@ -173,7 +175,7 @@ Duration
 DWY2Date
 Editable
 Ellipsis
-Else
+else
 Enabled
 EnabledIfError
 EnabledIfInsertion
@@ -186,13 +188,14 @@ Erase
 Error
 Evaluate
 Event
-Exists
+.Exists
 exit
 Export
 ExportObjects
 ExtendedDataType
 false
-Field
+.Field
+field(
 Field No.
 FieldActive
 FieldCaption
@@ -203,7 +206,7 @@ FieldError
 FieldExist
 FieldIndex
 FieldName
-FieldNo
+FieldNo(
 FieldRef
 FieldSeparator
 FieldStartDelimiter
@@ -245,7 +248,7 @@ GetView
 GlobalLanguage
 GroupTotalFields
 GroupType
-GUIAllowed
+GuiAllowed
 GUID
 Handlers
 HasFilter
@@ -264,7 +267,7 @@ Image
 Import
 Importance
 ImportObjects
-In
+in
 IncludeInDataSet
 InColumn
 InColumnHeading
@@ -451,6 +454,7 @@ OptionCaptionML
 OptionString
 OptionValue
 or
+order
 Orientation
 OSVersion
 OutStream
@@ -517,13 +521,13 @@ RightMargin
 Round
 RoundDateTime
 RowHeight
-Run
 RunCommand
 RunPageLink
 RunPageOnRec
 RunPageView
 RunModal
 RunObject
+Run
 SaveAsExcel
 SaveAsHTML
 SaveAsPDF
@@ -624,6 +628,8 @@ TOTALSCAUSEDBY
 TransactionType
 TransferFields
 trigger
+(true
+ true
 true
 Trunc
 Type
@@ -657,10 +663,10 @@ VertAlign
 VertGlue
 VertGrid
 Visible
-While
+while
 Width
 WindowsLanguage
-With
+with
 WithEvents
 WordDate
 Write
