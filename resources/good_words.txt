@@ -50,7 +50,7 @@ BorderColor
 BorderStyle
 BorderWidth
 BottomMargin
-Break
+.Break
 CalcDate
 CalcField
 CalcFields
