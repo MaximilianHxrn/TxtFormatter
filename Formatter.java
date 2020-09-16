@@ -1,7 +1,11 @@
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.io.*;
 
 public class Formatter {
 
@@ -77,7 +81,7 @@ public class Formatter {
         }
     }
 
-    private static boolean processFile(File file) {
+    private static void processFile(File file) {
         boolean bad_word_found = false;
         try {
             br = new BufferedReader(new FileReader(file));
@@ -116,10 +120,8 @@ public class Formatter {
                 fileOut.write(inputStr.getBytes());
                 fileOut.close();
             }
-        } catch (FileNotFoundException f) {
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return bad_word_found;
     }
 }
