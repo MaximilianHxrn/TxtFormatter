@@ -121,7 +121,7 @@ public class Formatter {
                 fileOut.close();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            return;
         }
     }
 }
