@@ -161,7 +161,8 @@ Direction
 Div
 Divisor
 DMY2Date
-do
+ do 
+ do
 Download
 DownloadFromStream
 DownTo
@@ -195,8 +196,6 @@ Export
 ExportObjects
 ExtendedDataType
 false
-.Field
-field(
 Field No.
 FieldActive
 FieldCaption
@@ -212,6 +211,8 @@ FieldRef
 FieldSeparator
 FieldStartDelimiter
 FieldValidate
+.Field
+field(
 File
 FileFormat
 FileName
