@@ -120,6 +120,8 @@ public class Formatter {
                     }
                 }
             }
+            // Pattern pattern = ;
+            inputStr = Pattern.compile("\\)\n\s*\\{\n\s*\\}").matcher(inputStr).replaceAll(") { }");
             if (bad_word_found) {
                 FileOutputStream fileOut = new FileOutputStream(file.getAbsolutePath());
                 fileOut.write(inputStr.getBytes());
