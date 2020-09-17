@@ -120,7 +120,9 @@ public class Formatter {
                     }
                 }
             }
-            // Pattern pattern = ;
+            // Copied from:
+            // https://stackoverflow.com/questions/632204/java-string-replace-using-regular-expressions
+            // https://stackoverflow.com/questions/16866077/regex-using-java-string-replaceall
             inputStr = Pattern.compile("\\)\n\s*\\{\n\s*\\}").matcher(inputStr).replaceAll(") { }");
             if (bad_word_found) {
                 FileOutputStream fileOut = new FileOutputStream(file.getAbsolutePath());
