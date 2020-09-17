@@ -68,10 +68,14 @@ public class Formatter {
 
     public static void main(String[] args) {
         // Copied from:
+        // https://stackoverflow.com/questions/3382954/measure-execution-time-for-a-java-method
+        long startTime = System.currentTimeMillis();
+        // Copied from:
         // https://stackoverflow.com/questions/3154488/how-do-i-iterate-through-the-files-in-a-directory-in-java
         Scanner input = new Scanner(System.in);
-        System.out.println("Paste directory path here: ");
-        File[] directoryListing = new File(input.nextLine()).listFiles();
+        // System.out.println("Paste directory path here: ");
+        // File[] directoryListing = new File(input.nextLine()).listFiles();
+        File[] directoryListing = new File(args[0]).listFiles();
         input.close();
         if (directoryListing != null) {
             for (File child : directoryListing) {
@@ -83,7 +87,7 @@ public class Formatter {
                 processFile(child);
             }
         }
-        System.out.println("Done");
+        System.out.println("Execution-Time: " + ((System.currentTimeMillis() - startTime) / 1000) + " seconds.");
     }
 
     private static void processFile(File file) {
@@ -96,7 +100,9 @@ public class Formatter {
                 inputBuffer.append(line);
                 inputBuffer.append('\n');
             }
-            inputBuffer.deleteCharAt(inputBuffer.length() - 1);
+            if (inputBuffer.length() > 0) {
+                inputBuffer.deleteCharAt(inputBuffer.length() - 1);
+            }
             br.close();
             String inputStr = inputBuffer.toString();
             for (String bad_word : list_of_bad_words) {
@@ -123,7 +129,7 @@ public class Formatter {
             // Copied from:
             // https://stackoverflow.com/questions/632204/java-string-replace-using-regular-expressions
             // https://stackoverflow.com/questions/16866077/regex-using-java-string-replaceall
-            inputStr = Pattern.compile("\\)\n\s*\\{\n\s*\\}").matcher(inputStr).replaceAll(") { }");
+            inputStr = Pattern.compile("\\)\n.*\\{\n.*\\}").matcher(inputStr).replaceAll(") { }");
             if (bad_word_found) {
                 FileOutputStream fileOut = new FileOutputStream(file.getAbsolutePath());
                 fileOut.write(inputStr.getBytes());
