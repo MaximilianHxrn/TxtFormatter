@@ -1,3 +1,4 @@
+exit;
 sorting
 where
 const
@@ -229,7 +230,8 @@ FontName
 FontSize
 FontStrikethru
 FontUnderline
-for
+ for 
+for 
 ForeColor
 Format
 FreezeColumnID
@@ -387,7 +389,8 @@ Numeric
 ObjectType
 Occurrence
 OCX
-of
+ of 
+ of
 OnAction
 OnActivate
 OnAfterAssignField
