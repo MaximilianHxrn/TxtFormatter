@@ -89,7 +89,7 @@ public class Formatter {
                 processFile(child);
             }
         }
-        System.out.println("Execution-Time: " + ((System.currentTimeMillis() - startTime) / 1000) + " seconds.");
+        System.out.println("\nExecution-Time: " + ((System.currentTimeMillis() - startTime) / 1000) + " seconds");
     }
 
     private static void processFile(File file) {
