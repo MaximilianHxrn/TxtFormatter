@@ -4,7 +4,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
+//import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -67,17 +67,19 @@ public class Formatter {
     };
 
     public static void main(String[] args) {
-        // Copied from:
-        // https://stackoverflow.com/questions/3382954/measure-execution-time-for-a-java-method
-        long startTime = System.currentTimeMillis();
+        // Scanner input = new Scanner(System.in);
+        // System.out.println("Paste directory path here: ");
+        // File[] directoryListing = new File(input.nextLine()).ListFiles();
+        // input.close();
+
         // Copied from:
         // https://stackoverflow.com/questions/3154488/how-do-i-iterate-through-the-files-in-a-directory-in-java
-        Scanner input = new Scanner(System.in);
-        // System.out.println("Paste directory path here: ");
-        // File[] directoryListing = new File(input.nextLine()).listFiles();
         File[] directoryListing = new File(args[0]).listFiles();
-        input.close();
+        long startTime = 0L;
         if (directoryListing != null) {
+            // Copied from:
+            // https://stackoverflow.com/questions/3382954/measure-execution-time-for-a-java-method
+            startTime = System.currentTimeMillis();
             for (File child : directoryListing) {
                 if (child.isDirectory()) {
                     for (File file : child.listFiles()) {
@@ -129,7 +131,7 @@ public class Formatter {
             // Copied from:
             // https://stackoverflow.com/questions/632204/java-string-replace-using-regular-expressions
             // https://stackoverflow.com/questions/16866077/regex-using-java-string-replaceall
-            inputStr = Pattern.compile("\\)\n.*\\{\n.*\\}").matcher(inputStr).replaceAll(") { }");
+            inputStr = Pattern.compile("\\)\n\\s*\\{\n\\s*\\}").matcher(inputStr).replaceAll(") { }");
             if (bad_word_found) {
                 FileOutputStream fileOut = new FileOutputStream(file.getAbsolutePath());
                 fileOut.write(inputStr.getBytes());
