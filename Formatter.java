@@ -83,13 +83,28 @@ public class Formatter {
             for (File child : directoryListing) {
                 if (child.isDirectory()) {
                     for (File file : child.listFiles()) {
-                        processFile(file);
+                        if (!getExtension(file).equals(".rdl")) {
+                            processFile(file);
+                        }
                     }
                 }
                 processFile(child);
             }
         }
         System.out.println("\nExecution-Time: " + ((System.currentTimeMillis() - startTime) / 1000) + " seconds");
+    }
+
+    // Copied from:
+    // https://stackoverflow.com/questions/3571223/how-do-i-get-the-file-extension-of-a-file-in-java
+    private static String getExtension(File file) {
+        String extension = "";
+        String fileName = file.getName();
+        int i = fileName.lastIndexOf('.');
+        int p = Math.max(fileName.lastIndexOf('/'), fileName.lastIndexOf('\\'));
+        if (i > p) {
+            extension = fileName.substring(i + 1);
+        }
+        return extension;
     }
 
     private static void processFile(File file) {
