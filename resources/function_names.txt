@@ -1,6 +1,4 @@
 Abs
-Activate
-Active
 ActiveControlOnOpen
 AddLink
 AddText
@@ -67,7 +65,6 @@ DT2Time
 Duplicate
 DWY2Date
 Erase
-Error
 Exists
 FieldError
 FieldExist
@@ -78,8 +75,8 @@ FindFirst
 FindLast
 FindSet
 Get
-GetFilter
-GetFilters
+.GetFilter
+.GetFilters
 GetLastErrorText
 GetPosition
 GetRangeMax
