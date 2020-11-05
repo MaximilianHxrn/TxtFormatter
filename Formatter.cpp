@@ -7,6 +7,7 @@
 #include <regex>
 #include <dirent.h>
 #include <chrono>
+#include <process.h>
 
 using namespace std;
 
@@ -207,5 +208,6 @@ int main(int argc, char const *argv[])
         std::cout << "\nExecution-Time: " << duration << " seconds.\n"
                   << endl;
     }
+    system("pause");
     return 0;
 }
