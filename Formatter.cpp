@@ -8,6 +8,7 @@
 #include <dirent.h>
 #include <chrono>
 #include <process.h>
+#include <thread>
 
 using namespace std;
 
@@ -208,6 +209,7 @@ int main(int argc, char const *argv[])
         std::cout << "\nExecution-Time: " << duration << " seconds.\n"
                   << endl;
     }
-    system("pause");
+    chrono::seconds dura(2);
+    this_thread::sleep_for(dura);
     return 0;
 }

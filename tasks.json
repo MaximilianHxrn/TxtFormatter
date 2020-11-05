@@ -6,7 +6,7 @@
         {
             "label": "Format Repository",
             "type": "shell",
-            "command": "cd R:\\Allgemein\\1-MPK\\General\\scripts\\SIT-Formatter | java -cp Formatter.jar Formatter.java '${workspaceFolder}\\Objects'",
+            "command": "Start-Process -FilePath Z:\\Transfer\\sit.mh\\TxtFormatter\\Format-Repository.ps1 -WorkingDirectory Z:\\Transfer\\sit.mh\\TxtFormatter",
             "problemMatcher": []
         }
     ]
