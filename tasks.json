@@ -6,7 +6,7 @@
         {
             "label": "Format Repository",
             "type": "shell",
-            "command": "Start-Process -FilePath Z:\\Transfer\\sit.mh\\TxtFormatter\\Format-Repository.ps1 -WorkingDirectory Z:\\Transfer\\sit.mh\\TxtFormatter",
+            "command": "Start-Process -FilePath \\\\sitsrv061\\WinFrame\\Transfer\\sit.mh\\TxtFormatter\\Format-Repository.ps1 -WorkingDirectory \\\\sitsrv061\\WinFrame\\Transfer\\sit.mh\\TxtFormatter",
             "problemMatcher": []
         }
     ]
