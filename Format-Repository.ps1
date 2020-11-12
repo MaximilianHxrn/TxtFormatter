@@ -10,6 +10,7 @@
     if($foldername.ShowDialog() -eq "OK")
     {
         $folder += $foldername.SelectedPath
+		cd "Z:\Transfer\sit.mh\TxtFormatter"
 		.\Formatter.exe $folder
     }
 
@@ -25,6 +26,7 @@ Function Get-File($initialDirectory)
     if($OpenFileDialog.ShowDialog() -eq "OK")
     {
         $folder += $OpenFileDialog.FileName
+		cd "Z:\Transfer\sit.mh\TxtFormatter"
         .\Formatter.exe $folder
     }
 }

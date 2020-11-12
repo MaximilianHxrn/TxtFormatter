@@ -3,7 +3,7 @@
     [string] $workspaceFolder
 )
 
-if ($workspaceFolder -eq $null)
+if ([string]::IsNullOrEmpty($workspaceFolder))
 {
     $workspaceFolder = "`"" + (Get-Item -Path ".\" -Verbose).FullName + "`""
 }
