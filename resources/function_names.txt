@@ -120,6 +120,8 @@ Mark
 MarkedOnly
 Modify
 ModifyAll
+NEXT = 0
+Next = 0
 Next
 .Open
 PadStr

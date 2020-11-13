@@ -378,6 +378,7 @@ Name
 Namespaces
 NamespacePrefix
 NewPagePerGroup
+Next = 0
 Next
 NextControl
 NodeName

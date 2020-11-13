@@ -5,7 +5,6 @@
 #include <windows.h>
 #include <sstream>
 #include <regex>
-#include <dirent.h>
 #include <chrono>
 #include <process.h>
 #include <thread>
@@ -59,6 +58,8 @@ void processFile(string fileName)
     ifstream myfile(fileName);
     stringstream os;
     bool badWordFound = false;
+    string next_help = "NEXT = 0";
+    string next_help2 = "Next = 0";
     if (myfile.is_open())
     {
         string line;
@@ -103,6 +104,10 @@ void processFile(string fileName)
                 {
                     badWordFound = true;
                     string new_function = good_word + "();";
+                    if (function_name == next_help.c_str() || function_name == next_help2.c_str())
+                    {
+                        new_function = "Next() = 0;";
+                    }
                     temp = replaceAll(temp, search_function.c_str(), new_function);
                 }
             }
@@ -209,7 +214,7 @@ int main(int argc, char const *argv[])
         std::cout << "\nExecution-Time: " << duration << " seconds.\n"
                   << endl;
     }
-    chrono::seconds dura(2);
+    chrono::milliseconds dura(500);
     this_thread::sleep_for(dura);
     return 0;
 }
