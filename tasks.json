@@ -6,7 +6,7 @@
         {
             "label": "Format Repository",
             "type": "shell",
-            "command": "cd R:\\Allgemein\\1-MPK\\General\\scripts\\SIT-Formatter | java -cp Formatter.jar Formatter.java '${workspaceFolder}\\Objects'",
+            "command": "powershell.exe -File \\\\sitsrv061\\WinFrame\\Transfer\\cir.al\\StandaloneDevTools\\TxtFormatter\\Format-Repository.ps1 -WorkingDirectory \\\\sitsrv061\\WinFrame\\Transfer\\cir.al\\StandaloneDevTools\\TxtFormatter",
             "problemMatcher": []
         }
     ]
