@@ -67,11 +67,6 @@ public class Formatter {
     };
 
     public static void main(String[] args) {
-        // Scanner input = new Scanner(System.in);
-        // System.out.println("Paste directory path here: ");
-        // File[] directoryListing = new File(input.nextLine()).ListFiles();
-        // input.close();
-
         // Copied from:
         // https://stackoverflow.com/questions/3154488/how-do-i-iterate-through-the-files-in-a-directory-in-java
         File[] directoryListing = new File(args[0]).listFiles();
