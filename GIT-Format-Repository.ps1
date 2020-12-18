@@ -17,5 +17,5 @@ else
     Write-Host '______________________________'
     Write-Host ''
 }
-cd 'Z:\Transfer\sit.mh\TxtFormatter'
+cd '\\sitsrv061\WinFrame\Transfer\cir.al\StandaloneDevTools\TxtFormatter'
 .\Formatter.exe $workspaceFolder

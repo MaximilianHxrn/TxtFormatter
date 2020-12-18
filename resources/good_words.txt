@@ -273,6 +273,8 @@ Import
 Importance
 ImportObjects
 in
+ in
+ in 
 IncludeInDataSet
 InColumn
 InColumnHeading
@@ -291,6 +293,7 @@ InMatrixHeading
 InPage
 Input
 .Insert
+ Insert
 InsertAllowed
 InsStr
 InStream
@@ -454,7 +457,7 @@ OnQueryClosePage
 OnRename
 OnTimer
 OnValidate
-Open
+.Open
 Option
 OptionCaption
 OptionCaptionML
