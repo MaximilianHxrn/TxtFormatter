@@ -24,6 +24,7 @@ ClearLastError
 ClearMarks
 ClearOnLookup
 Close
+Commit
 Confirm
 ConvertStr
 Copy
@@ -93,6 +94,7 @@ HasLinks
 HasValue
 IncStr
 Init
+.Insert
 Insert
 IsAction
 IsAutomation
@@ -183,5 +185,6 @@ Uppercase
 Validate
 Variant2Date
 Variant2Time
+WorkDate
 Write
 WriteText
