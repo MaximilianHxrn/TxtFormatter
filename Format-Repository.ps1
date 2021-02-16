@@ -26,6 +26,16 @@ Function Get-File($initialDirectory) {
 		Set-Location "\\sitsrv061\WinFrame\Transfer\cir.al\StandaloneDevTools\TxtFormatter"
         .\Formatter.exe $folder $UnsafeMode.Checked
     }
+    else {
+        .\Format-Repository.ps1
+    }
+}
+
+Function CheckUnsafe() {
+    if ($UnsafeMode.Checked) {
+        $msg = "This mode may lead to false correction of your code. Use with Caution!"
+        [System.Windows.Forms.MessageBox]::Show($msg,"Information",[System.Windows.Forms.MessageBoxButtons]::OK)
+    }
 }
 
 Add-Type -AssemblyName System.Windows.Forms
