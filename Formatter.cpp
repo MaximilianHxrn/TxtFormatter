@@ -9,6 +9,14 @@
 #include <process.h>
 #include <thread>
 
+#ifdef WINDOWS
+#include <direct.h>
+#define GetCurrentDir _getcwd
+#else
+#include <unistd.h>
+#define GetCurrentDir getcwd
+#endif
+
 using namespace std;
 
 list<string> readDict(string fileName)
@@ -48,9 +56,17 @@ string replaceAll(std::string &str, const std::string &from, const std::string &
     return str;
 }
 
-list<string> bad_words = readDict(".\\resources\\bad_words.txt");
-list<string> good_words = readDict(".\\resources\\good_words.txt");
-list<string> function_names = readDict(".\\resources\\function_names.txt");
+std::string get_current_dir() {
+   char buff[FILENAME_MAX]; //create string buffer to hold path
+   GetCurrentDir( buff, FILENAME_MAX );
+   string current_working_dir(buff);
+   return current_working_dir;
+}
+
+const string directory = get_current_dir();
+list<string> bad_words = readDict(directory + "\\resources\\bad_words.txt");
+list<string> good_words = readDict(directory + "\\resources\\good_words.txt");
+list<string> function_names = readDict(directory + "\\resources\\function_names.txt");
 
 void processFile(string fileName)
 {
@@ -171,8 +187,8 @@ void processFolder(string folder)
         process_path = folder + "\\Objects\\";
         search_path = folder + "\\Objects\\*";
     }
-    WIN32_FIND_DATA fd;
-    HANDLE hFind = ::FindFirstFile(search_path.c_str(), &fd);
+    WIN32_FIND_DATAA fd;
+    HANDLE hFind = ::FindFirstFileA(search_path.c_str(), &fd);
     if (hFind != INVALID_HANDLE_VALUE)
     {
         do
@@ -186,11 +202,13 @@ void processFolder(string folder)
                 }
                 else
                 {
-                    temp = process_path + fd.cFileName;
+                    std::string ws(fd.cFileName);
+                    std::string s(ws.begin(), ws.end());
+                    temp = process_path + s;
                 }
                 processFile(temp.c_str());
             }
-        } while (::FindNextFile(hFind, &fd));
+        } while (::FindNextFileA(hFind, &fd));
         ::FindClose(hFind);
     }
 }

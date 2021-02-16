@@ -4,7 +4,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-//import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -106,7 +105,7 @@ public class Formatter {
         boolean bad_word_found = false;
         try {
             br = new BufferedReader(new FileReader(file));
-            StringBuffer inputBuffer = new StringBuffer();
+            StringBuilder inputBuffer = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null) {
                 inputBuffer.append(line);
