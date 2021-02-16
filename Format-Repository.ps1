@@ -10,7 +10,7 @@
     if($foldername.ShowDialog() -eq "OK")
     {
         $folder += $foldername.SelectedPath
-		cd "\\sitsrv061\WinFrame\Transfer\cir.al\StandaloneDevTools\TxtFormatter"
+		Set-Location "\\sitsrv061\WinFrame\Transfer\cir.al\StandaloneDevTools\TxtFormatter"
 		.\Formatter.exe $folder
     }
 
@@ -26,7 +26,7 @@ Function Get-File($initialDirectory)
     if($OpenFileDialog.ShowDialog() -eq "OK")
     {
         $folder += $OpenFileDialog.FileName
-		cd "\\sitsrv061\WinFrame\Transfer\cir.al\StandaloneDevTools\TxtFormatter"
+		Set-Location "\\sitsrv061\WinFrame\Transfer\cir.al\StandaloneDevTools\TxtFormatter"
         .\Formatter.exe $folder
     }
 }
