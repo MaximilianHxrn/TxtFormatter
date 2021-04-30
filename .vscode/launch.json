@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "al",
+      "request": "launch",
+      "name": "VA-PCO1",
+      "server": "http://VA-PCO1.container.sit/",
+      "serverInstance": "BC",
+      "authentication": "Windows",
+      "schemaUpdateMode": "ForceSync",
+      "launchBrowser": true,
+      "breakOnError": false,
+      "breakOnRecordWrite": true,
+      "enableLongRunningSqlStatements": false,
+      "enableSqlInformationDebugger": false,
+      "tenant": "default"
+    }
+  ]
+}

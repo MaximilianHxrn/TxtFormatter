@@ -18,4 +18,4 @@ else
     Write-Host ''
 }
 cd '\\sitsrv061\WinFrame\Transfer\cir.al\StandaloneDevTools\TxtFormatter'
-.\Formatter.exe $workspaceFolder
+.\Formatter.exe $workspaceFolder false
