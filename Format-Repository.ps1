@@ -10,9 +10,6 @@
         Set-Location "\\sitsrv061\WinFrame\Transfer\cir.al\StandaloneDevTools\TxtFormatter"
         .\Formatter.exe $folder
     }
-    else {
-        .\Format-Repository.ps1
-    }
 }
 
 Function Get-File($initialDirectory) { 
@@ -24,20 +21,7 @@ Function Get-File($initialDirectory) {
     if ($OpenFileDialog.ShowDialog() -eq "OK") {
         $folder += $OpenFileDialog.FileName
 		Set-Location "\\sitsrv061\WinFrame\Transfer\cir.al\StandaloneDevTools\TxtFormatter"
-        .\Formatter.exe $folder $UnsafeMode.Checked
-    }
-    else {
-        .\Format-Repository.ps1
-    }
-}
-
-Function CheckUnsafe() {
-    if ($UnsafeMode.Checked) {
-        $msg = "This mode may lead to false correction of your code. Use with Caution!"
-        [System.Windows.Forms.MessageBox]::Show($msg,"Information",[System.Windows.Forms.MessageBoxButtons]::OK)
-    }
-    else {
-        .\Format-Repository.ps1
+        .\Formatter.exe $folder
     }
 }
 
@@ -68,6 +52,16 @@ $label.Size = New-Object System.Drawing.Size(280, 50)
 $label.Text = "      Choose how you want to format your repository"
 $form.Controls.Add($label)
 $form.Topmost = $true
+$form.KeyPreview = $true #This is the important part
+$form.Add_KeyDown{
+    param ( 
+        [Parameter(Mandatory)][Object]$sender,
+        [Parameter(Mandatory)][System.Windows.Forms.KeyEventArgs]$e
+    )
+    if($e.KeyCode -eq "Escape"){
+        $Form.close()
+    }
+}
 $result = $form.ShowDialog()
  
 if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
