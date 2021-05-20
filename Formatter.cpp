@@ -60,7 +60,7 @@ std::string get_current_dir() {
    char buff[FILENAME_MAX]; //create string buffer to hold path
    GetCurrentDir( buff, FILENAME_MAX );
    string current_working_dir(buff);
-   return current_working_dir;
+   return current_working_dir; 
 }
 
 const string directory = get_current_dir();
