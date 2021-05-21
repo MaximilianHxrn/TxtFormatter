@@ -54,7 +54,6 @@ const string directory = get_current_dir();
 list<string> bad_words = readDict(directory + "\\resources\\bad_words.txt");
 list<string> good_words = readDict(directory + "\\resources\\good_words.txt");
 list<string> function_names = readDict(directory + "\\resources\\function_names.txt");
-string UnsafeMode;
 bool badWordFound = false;
 
 string replaceAll(std::string &str, const std::string &from, const std::string &to)
@@ -62,10 +61,6 @@ string replaceAll(std::string &str, const std::string &from, const std::string &
     // Copied from:
     // https://stackoverflow.com/a/3418285/10821617
     string temp_for_search = str;
-    if (UnsafeMode == "True")
-    {
-        transform(temp_for_search.begin(), temp_for_search.end(), temp_for_search.begin(), ::toupper);
-    }
     size_t start_pos = 0;
     while ((start_pos = temp_for_search.find(from, start_pos)) != std::string::npos)
     {
@@ -81,10 +76,6 @@ std::string process(string temp)
     string next_help = "NEXT = 0";
     string next_help2 = "Next = 0";
     string temp_for_search = temp;
-    if (UnsafeMode == "True")
-    {
-        transform(temp_for_search.begin(), temp_for_search.end(), temp_for_search.begin(), ::toupper);
-    }
     for (string bad_word : bad_words)
     {
         if (temp_for_search.find(bad_word) != string::npos)
@@ -233,7 +224,6 @@ void processFolder(string folder)
 int main(int argc, char const *argv[])
 {
     string s(argv[1]);
-    UnsafeMode = argv[2];
     cout << "Formatting..." << endl;
     auto t1 = std::chrono::high_resolution_clock::now();
     processFolder(s);
