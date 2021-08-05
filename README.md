@@ -3,7 +3,7 @@ This tool formats wrong C/AL code to correct AL code
 
 www.singhammer.com
 
-#####Aufbau des Codes
+Aufbau des Codes
 Imports und Namespace Deklarationen
 ```C++
 #include <iostream>
