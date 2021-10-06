@@ -54,21 +54,35 @@ const string directory = get_current_dir();
 list<string> bad_words = readDict(directory + "\\resources\\bad_words.txt");
 list<string> good_words = readDict(directory + "\\resources\\good_words.txt");
 list<string> function_names = readDict(directory + "\\resources\\function_names.txt");
+string UnsafeMode;
 bool badWordFound = false;
 
-string replaceAll(std::string &str, const std::string &from, const std::string &to)
-{
-    // Copied from:
-    // https://stackoverflow.com/a/3418285/10821617
-    string temp_for_search = str;
-    size_t start_pos = 0;
-    while ((start_pos = temp_for_search.find(from, start_pos)) != std::string::npos)
-    {
-        str.replace(start_pos, from.length(), to);
-        start_pos += to.length(); // In case 'to' contains 'from', like replacing 'x' with 'yx'
-    }
+// string replaceAll(std::string &str, const std::string &from, const std::string &to)
+// {
+//     // Copied from:
+//     // https://stackoverflow.com/a/3418285/10821617
+//     string temp_for_search = str;
+//     size_t start_pos = 0;
+//     while ((start_pos = temp_for_search.find(from, start_pos)) != std::string::npos)
+//     {
+//         str.replace(start_pos, from.length(), to);
+//         start_pos += to.length(); // In case 'to' contains 'from', like replacing 'x' with 'yx'
+//     }
 
-    return str;
+//     return str;
+// }
+
+void replaceAll(std::string& subject, const std::string& search, const std::string& replace) {
+    string temp_for_search = subject;
+    if (UnsafeMode == "True")
+    {
+        transform(temp_for_search.begin(), temp_for_search.end(), temp_for_search.begin(), ::toupper);
+    }
+    size_t pos = 0;
+    while ((pos = temp_for_search.find(search, pos)) != std::string::npos) {
+         subject.replace(pos, search.length(), replace);
+         pos += replace.length();
+    }
 }
 
 std::string process(string temp)
@@ -76,6 +90,10 @@ std::string process(string temp)
     string next_help = "NEXT = 0";
     string next_help2 = "Next = 0";
     string temp_for_search = temp;
+    if (UnsafeMode == "True")
+    {
+        transform(temp_for_search.begin(), temp_for_search.end(), temp_for_search.begin(), ::toupper);
+    }
     for (string bad_word : bad_words)
     {
         if (temp_for_search.find(bad_word) != string::npos)
@@ -88,7 +106,7 @@ std::string process(string temp)
                 if (bad_word == good_word_for_check)
                 {
                     badWordFound = true;
-                    temp = replaceAll(temp, bad_word, good_word);
+                    replaceAll(temp, bad_word, good_word);
                     break;
                 }
             }
@@ -110,7 +128,7 @@ std::string process(string temp)
                     {
                         new_function = "Next() = 0;";
                     }
-                    temp = replaceAll(temp, search_function.c_str(), new_function);
+                    replaceAll(temp, search_function.c_str(), new_function);
                 }
             }
         }
@@ -122,7 +140,7 @@ std::string process(string temp)
                 {
                     badWordFound = true;
                     string new_function = good_word + "() then";
-                    temp = replaceAll(temp, search_function2.c_str(), new_function);
+                    replaceAll(temp, search_function2.c_str(), new_function);
                 }
             }
         }
@@ -192,8 +210,8 @@ void processFolder(string folder)
     }
     else
     {
-        process_path = folder + "\\Objects\\";
-        search_path = folder + "\\Objects\\*";
+        process_path = folder + "\\";
+        search_path = folder + "\\*";
     }
     WIN32_FIND_DATAA fd;
     HANDLE hFind = ::FindFirstFileA(search_path.c_str(), &fd);
@@ -225,6 +243,7 @@ int main(int argc, char const *argv[])
 {
     string s(argv[1]);
     cout << "Formatting..." << endl;
+
     auto t1 = std::chrono::high_resolution_clock::now();
     processFolder(s);
     auto t2 = std::chrono::high_resolution_clock::now();

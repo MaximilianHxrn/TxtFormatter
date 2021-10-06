@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="txtformatter">TxtFormatter</h1>
+<p>www.singhammer.com</p>
+<p>Aufbau des Codes
+Imports und Namespace Deklarationen</p>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;fstream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;list&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;windows.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sstream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;regex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;process.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;thread&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> WINDOWS</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;direct.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> GetCurrentDir _getcwd</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;unistd.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> GetCurrentDir getcwd</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+</div></code></pre>
+<p>Dies Funktion nimmt als Parameter den Dateinamen. Von dort aus wird Zeile für Zeile die Datei eingelesen und in einem Dictionary gespeichert. Diese Funktion wird für die Dateien &quot;good_words&quot;, &quot;bad_words&quot; und &quot;function_names&quot; verwendet.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-built_in">list</span>&lt;<span class="hljs-built_in">string</span>&gt; <span class="hljs-title">readDict</span><span class="hljs-params">(<span class="hljs-built_in">string</span> fileName)</span>
+</span>{
+    <span class="hljs-comment">// Copied from:</span>
+    <span class="hljs-comment">// https://gist.github.com/stevedoyle/1319089</span>
+    <span class="hljs-built_in">list</span>&lt;<span class="hljs-built_in">string</span>&gt; temp;
+    <span class="hljs-built_in">string</span> <span class="hljs-built_in">line</span>;
+    <span class="hljs-function">ifstream <span class="hljs-title">myfile</span><span class="hljs-params">(fileName)</span></span>;
+    <span class="hljs-keyword">if</span> (myfile.is_open())
+    {
+        <span class="hljs-keyword">while</span> (myfile.good())
+        {
+            getline(myfile, <span class="hljs-built_in">line</span>);
+            temp.push_back(<span class="hljs-built_in">line</span>);
+        }
+        myfile.<span class="hljs-built_in">close</span>();
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%s is not open."</span>, fileName);
+    }
+    <span class="hljs-keyword">return</span> temp;
+}
+</div></code></pre>
+<p>Um Platz zu sparen und leserlich Dateien einzulesen, holt sich diese Funktion das derzeitige &quot;working directory&quot;. Von dort aus kann man einfacher die Dateien ansteuern.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">get_current_dir</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">char</span> buff[FILENAME_MAX]; <span class="hljs-comment">//create string buffer to hold path</span>
+    GetCurrentDir(buff, FILENAME_MAX);
+    <span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">current_working_dir</span><span class="hljs-params">(buff)</span></span>;
+    <span class="hljs-keyword">return</span> current_working_dir;
+}
+
+<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> directory = get_current_dir();
+<span class="hljs-built_in">list</span>&lt;<span class="hljs-built_in">string</span>&gt; bad_words = readDict(directory + <span class="hljs-string">"\\resources\\bad_words.txt"</span>); <span class="hljs-comment">// Einlesen</span>
+<span class="hljs-built_in">list</span>&lt;<span class="hljs-built_in">string</span>&gt; good_words = readDict(directory + <span class="hljs-string">"\\resources\\good_words.txt"</span>); <span class="hljs-comment">// Einlesen</span>
+<span class="hljs-built_in">list</span>&lt;<span class="hljs-built_in">string</span>&gt; function_names = readDict(directory + <span class="hljs-string">"\\resources\\function_names.txt"</span>); <span class="hljs-comment">// Einlesen</span>
+<span class="hljs-built_in">string</span> UnsafeMode;
+<span class="hljs-keyword">bool</span> badWordFound = <span class="hljs-literal">false</span>;
+</div></code></pre>
+<p>Diese Funktion verwendet einen Algorithmus von StackOverflow, um die Standard-Funktionalität von std::str.replace() effizienter zu nutzen und jedes Auftreten eines Wortes zu ersetzen.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">replaceAll</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;str, <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;from, <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;to)</span>
+</span>{
+    <span class="hljs-comment">// Copied from:</span>
+    <span class="hljs-comment">// https://stackoverflow.com/a/3418285/10821617</span>
+    <span class="hljs-built_in">string</span> temp_for_search = str;
+    <span class="hljs-keyword">if</span> (UnsafeMode == <span class="hljs-string">"True"</span>)
+    {
+        transform(temp_for_search.<span class="hljs-built_in">begin</span>(), temp_for_search.<span class="hljs-built_in">end</span>(), temp_for_search.<span class="hljs-built_in">begin</span>(), ::<span class="hljs-built_in">toupper</span>);
+    }
+    <span class="hljs-keyword">size_t</span> start_pos = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> ((start_pos = temp_for_search.<span class="hljs-built_in">find</span>(from, start_pos)) != <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>::npos)
+    {
+        str.replace(start_pos, from.length(), to);
+        start_pos += to.length(); <span class="hljs-comment">// In case 'to' contains 'from', like replacing 'x' with 'yx'</span>
+    }
+
+    <span class="hljs-keyword">return</span> str;
+}
+</div></code></pre>
+<p>process() ist die eigentlich wichtige Funktion dieses Tools. Hier werden bestimmte Kriterien überprüft</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">process</span><span class="hljs-params">(<span class="hljs-built_in">string</span> temp)</span>
+</span>{
+    <span class="hljs-built_in">string</span> next_help = <span class="hljs-string">"NEXT = 0"</span>;
+    <span class="hljs-built_in">string</span> next_help2 = <span class="hljs-string">"Next = 0"</span>;
+    <span class="hljs-built_in">string</span> temp_for_search = temp;
+    <span class="hljs-keyword">if</span> (UnsafeMode == <span class="hljs-string">"True"</span>)
+    {
+        transform(temp_for_search.<span class="hljs-built_in">begin</span>(), temp_for_search.<span class="hljs-built_in">end</span>(), temp_for_search.<span class="hljs-built_in">begin</span>(), ::<span class="hljs-built_in">toupper</span>);
+    }
+
+</div></code></pre>
+<p>Dieser Teil sucht aus der Liste von &quot;bad_words&quot; ein Auftreten in der Datei. Findet er einen Eintrag, dann werden alle Auftreten in der Datei ersetzt mit dem richtigen Wort aus &quot;good_words&quot;.</p>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">string</span> bad_word : bad_words)
+    {
+        <span class="hljs-keyword">if</span> (temp_for_search.<span class="hljs-built_in">find</span>(bad_word) != <span class="hljs-built_in">string</span>::npos)
+        {
+            <span class="hljs-keyword">for</span> (<span class="hljs-built_in">string</span> good_word : good_words)
+            {
+                <span class="hljs-built_in">string</span> good_word_for_check = good_word;
+                transform(bad_word.<span class="hljs-built_in">begin</span>(), bad_word.<span class="hljs-built_in">end</span>(), bad_word.<span class="hljs-built_in">begin</span>(), ::<span class="hljs-built_in">toupper</span>);
+                transform(good_word_for_check.<span class="hljs-built_in">begin</span>(), good_word_for_check.<span class="hljs-built_in">end</span>(), good_word_for_check.<span class="hljs-built_in">begin</span>(), ::<span class="hljs-built_in">toupper</span>);
+                <span class="hljs-keyword">if</span> (bad_word == good_word_for_check)
+                {
+                    badWordFound = <span class="hljs-literal">true</span>;
+                    temp = replaceAll(temp, bad_word, good_word);
+                    <span class="hljs-keyword">break</span>;
+                }
+            }
+        }
+    }
+</div></code></pre>
+<p>Dieser Ausschnitt läuft, wenn alle Wörter richtig geschrieben sind. Hierbei wird überprüft, ob Funktionsaufrufe noch Klammern benötigen und fügt diese ein (Beispiel: Record.Find; --&gt; Record.Find(); ).</p>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">string</span> function_name : function_names)
+    {
+        <span class="hljs-built_in">string</span> search_function = function_name + <span class="hljs-string">";"</span>;
+        <span class="hljs-built_in">string</span> search_function2 = function_name + <span class="hljs-string">" then"</span>;
+        <span class="hljs-keyword">if</span> (temp.<span class="hljs-built_in">find</span>(search_function.c_str()) != <span class="hljs-built_in">string</span>::npos)
+        {
+            <span class="hljs-keyword">for</span> (<span class="hljs-built_in">string</span> good_word : good_words)
+            {
+                <span class="hljs-keyword">if</span> (function_name == good_word)
+                {
+                    badWordFound = <span class="hljs-literal">true</span>;
+                    <span class="hljs-built_in">string</span> new_function = good_word + <span class="hljs-string">"();"</span>;
+                    <span class="hljs-keyword">if</span> (function_name == next_help.c_str() || function_name == next_help2.c_str())
+                    {
+                        new_function = <span class="hljs-string">"Next() = 0;"</span>;
+                    }
+                    temp = replaceAll(temp, search_function.c_str(), new_function);
+                }
+            }
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (temp.<span class="hljs-built_in">find</span>(search_function2.c_str()) != <span class="hljs-built_in">string</span>::npos)
+        {
+            <span class="hljs-keyword">for</span> (<span class="hljs-built_in">string</span> good_word : good_words)
+            {
+                <span class="hljs-keyword">if</span> (function_name == good_word)
+                {
+                    badWordFound = <span class="hljs-literal">true</span>;
+                    <span class="hljs-built_in">string</span> new_function = good_word + <span class="hljs-string">"() then"</span>;
+                    temp = replaceAll(temp, search_function2.c_str(), new_function);
+                }
+            }
+        }
+    }
+</div></code></pre>
+<p>Nachdem die Formatierung abgeschlossen ist, wird der formatierte string zurückgegeben.</p>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">return</span> temp;
+</div></code></pre>
+<p>Dieser Teil ist die &quot;Mutter-Funktion&quot; von process(). Hier wird die Datei eingelesen und das Ergebnis von process() einbehalten.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">processFile</span><span class="hljs-params">(<span class="hljs-built_in">string</span> fileName)</span>
+</span>{
+    <span class="hljs-built_in">string</span> <span class="hljs-built_in">line</span>;
+    <span class="hljs-function">ifstream <span class="hljs-title">myfile</span><span class="hljs-params">(fileName)</span></span>;
+    <span class="hljs-built_in">stringstream</span> os;
+    <span class="hljs-keyword">if</span> (myfile.is_open())
+    {
+        <span class="hljs-built_in">string</span> <span class="hljs-built_in">line</span>;
+        <span class="hljs-keyword">while</span> (getline(myfile, <span class="hljs-built_in">line</span>))
+        {
+            os &lt;&lt; <span class="hljs-built_in">line</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        }
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%s is not open."</span>, fileName.c_str());
+    }
+    <span class="hljs-built_in">string</span> temp = os.str();
+    temp = <span class="hljs-built_in">process</span>(temp.substr(<span class="hljs-number">0</span>, temp.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>));
+</div></code></pre>
+<p>Dieser Teil ist speziell für Reports gedacht. Er sucht ein Auftreten von</p>
+<pre class="hljs"><code><div>column()
+{
+}
+</div></code></pre>
+<p>, welches mit</p>
+<pre class="hljs"><code><div>column() { }
+</div></code></pre>
+<p>ersetzt wird.</p>
+<pre class="hljs"><code><div>    <span class="hljs-comment">// Copied from:</span>
+    <span class="hljs-comment">// https://stackoverflow.com/questions/11508798/conditionally-replace-regex-matches-in-string</span>
+    <span class="hljs-built_in">string</span> temp_for_check = temp;
+    temp = regex_replace(temp, regex(<span class="hljs-string">"\\)\n\\s*\\{\n\\s*\\}"</span>), <span class="hljs-string">") { }"</span>);
+    <span class="hljs-keyword">if</span> (temp != temp_for_check)
+    {
+        badWordFound = <span class="hljs-literal">true</span>;
+    }
+    <span class="hljs-keyword">if</span> (badWordFound)
+    {
+        ofstream <span class="hljs-built_in">write</span>;
+        <span class="hljs-built_in">write</span>.<span class="hljs-built_in">open</span>(fileName, ios::out | ios::binary);
+        <span class="hljs-built_in">write</span> &lt;&lt; temp;
+        <span class="hljs-built_in">write</span>.<span class="hljs-built_in">close</span>();
+    }
+}
+</div></code></pre>
+<p>hasEnding() ist eine Helferfunktion die aus Performance-Zwecken eingebaut ist. Sie überprüftdie Endung eines String auf Gleichheit mit einem weiteren Paramter. In diesem Fall wird auf &quot;.al&quot; geprüft.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">hasEnding</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-keyword">const</span> &amp;fullString, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-keyword">const</span> &amp;ending)</span>
+</span>{
+    <span class="hljs-keyword">if</span> (fullString.length() &gt;= ending.length())
+    {
+        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span> == fullString.compare(fullString.length() - ending.length(), ending.length(), ending));
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+}
+</div></code></pre>
+<p>processFolder() ist die &quot;Mutter-Funktion&quot; von processFile() und kümmert sich um die Ordnerstruktur. Sie ist die eigentliche Funktion, die aus der main() aufgerufen wird.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">processFolder</span><span class="hljs-params">(<span class="hljs-built_in">string</span> folder)</span>
+</span>{
+    <span class="hljs-comment">// Copied from:</span>
+    <span class="hljs-comment">// https://stackoverflow.com/questions/67273/how-do-you-iterate-through-every-file-directory-recursively-in-standard-c</span>
+    <span class="hljs-built_in">string</span> process_path;
+    <span class="hljs-built_in">string</span> search_path;
+</div></code></pre>
+<p>Sie überprüft anfänglich, ob es sich um eine Datei handelt oder einen Ordner und je nachdem, wird dann die Suchfunktion angepasst...</p>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">bool</span> singleFile = hasEnding(folder, <span class="hljs-string">".al"</span>);
+    <span class="hljs-keyword">if</span> (singleFile)
+    {
+        process_path = folder;
+        search_path = folder;
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        process_path = folder + <span class="hljs-string">"\\Objects\\"</span>;
+        search_path = folder + <span class="hljs-string">"\\Objects\\*"</span>;
+    }
+    WIN32_FIND_DATAA fd;
+    HANDLE hFind = ::FindFirstFileA(search_path.c_str(), &amp;fd);
+    <span class="hljs-keyword">if</span> (hFind != INVALID_HANDLE_VALUE)
+    {
+        <span class="hljs-keyword">do</span>
+        {
+            <span class="hljs-keyword">if</span> (!(fd.dwFileAttributes &amp; FILE_ATTRIBUTE_DIRECTORY))
+            {         
+                <span class="hljs-built_in">string</span> temp;
+                <span class="hljs-keyword">if</span> (singleFile)
+                {
+                    temp = process_path;
+                }
+                <span class="hljs-keyword">else</span>
+                {
+                    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> ws(fd.cFileName);
+                    <span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">s</span><span class="hljs-params">(ws.<span class="hljs-built_in">begin</span>(), ws.<span class="hljs-built_in">end</span>())</span></span>;
+                    temp = process_path + s;
+                }
+</div></code></pre>
+<p>Wurde etwas gefunden, wird die Datei verarbeitet.</p>
+<pre class="hljs"><code><div>                processFile(temp.c_str()); 
+</div></code></pre>
+<pre class="hljs"><code><div>            }
+        } <span class="hljs-keyword">while</span> (::FindNextFileA(hFind, &amp;fd));
+        ::FindClose(hFind);
+    }
+}
+</div></code></pre>
+<p>Die Main-Funktion liest per Parameter den Pfad ein und ob es sich, um den UnsafeMode handelt. Der UnsafeMode ist case insensitive und findet auch Auftreten von fInDsEt() --&gt; FindSet().
+Zusätzlich wurde ein Timer eingebaut, den man später in VS Code sieht. Er hat keinen wirklichen Nutzen, sondern diente ursprünglich zum Debugging, wurde dann aus ästethischen Gründen beibehalten.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> <span class="hljs-keyword">const</span> *argv[])</span>
+</span>{
+    <span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">s</span><span class="hljs-params">(argv[<span class="hljs-number">1</span>])</span></span>;
+    UnsafeMode = argv[<span class="hljs-number">2</span>];
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Formatting..."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-keyword">auto</span> t1 = <span class="hljs-built_in">std</span>::chrono::high_resolution_clock::now();
+    processFolder(s);
+    <span class="hljs-keyword">auto</span> t2 = <span class="hljs-built_in">std</span>::chrono::high_resolution_clock::now();
+    <span class="hljs-keyword">auto</span> duration = <span class="hljs-built_in">std</span>::chrono::duration_cast&lt;<span class="hljs-built_in">std</span>::chrono::seconds&gt;(t2 - t1).count();
+    <span class="hljs-keyword">if</span> (duration == <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-keyword">auto</span> duration = <span class="hljs-built_in">std</span>::chrono::duration_cast&lt;<span class="hljs-built_in">std</span>::chrono::milliseconds&gt;(t2 - t1).count();
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\nExecution-Time: "</span> &lt;&lt; duration &lt;&lt; <span class="hljs-string">" milliseconds.\n"</span>
+                  &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\nExecution-Time: "</span> &lt;&lt; duration &lt;&lt; <span class="hljs-string">" seconds.\n"</span>
+                  &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+    <span class="hljs-function">chrono::milliseconds <span class="hljs-title">dura</span><span class="hljs-params">(<span class="hljs-number">500</span>)</span></span>;
+    this_thread::sleep_for(dura);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+
+</body>
+</html>

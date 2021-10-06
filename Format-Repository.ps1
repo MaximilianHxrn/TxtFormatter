@@ -8,7 +8,17 @@
     if ($foldername.ShowDialog() -eq "OK") {
         $folder += $foldername.SelectedPath
         Set-Location "\\sitsrv061\WinFrame\Transfer\cir.al\StandaloneDevTools\TxtFormatter"
-        .\Formatter.exe $folder
+        .\Formatter.exe $folder $UnsafeMode.Checked
+    }
+    else {
+        .\Format-Repository.ps1
+    }
+}
+
+Function CheckUnsafe() {
+    if ($UnsafeMode.Checked) {
+        $msg = "This mode may lead to false correction of your code. Use with Caution!"
+        [System.Windows.Forms.MessageBox]::Show($msg,"Information",[System.Windows.Forms.MessageBoxButtons]::OK)
     }
 }
 
@@ -21,7 +31,7 @@ Function Get-File($initialDirectory) {
     if ($OpenFileDialog.ShowDialog() -eq "OK") {
         $folder += $OpenFileDialog.FileName
 		Set-Location "\\sitsrv061\WinFrame\Transfer\cir.al\StandaloneDevTools\TxtFormatter"
-        .\Formatter.exe $folder
+        .\Formatter.exe $folder $UnsafeMode.Checked
     }
 }
 
@@ -43,6 +53,11 @@ $CancelButton.Location = New-Object System.Drawing.Point(150, 50)
 $CancelButton.Size = New-Object System.Drawing.Size(75, 23)
 $CancelButton.Text = 'File'
 $CancelButton.DialogResult = [System.Windows.Forms.DialogResult]::No
+$UnsafeMode = New-Object System.Windows.Forms.Checkbox 
+$UnsafeMode.Location = New-Object System.Drawing.Size(30, 85) 
+$UnsafeMode.Size = New-Object System.Drawing.Size(500, 20)
+$UnsafeMode.Text = "    Enable Unsafe Mode (case insensitive)"
+$UnsafeMode.TabIndex = 4
 $form.Controls.Add($UnsafeMode)
 $form.CancelButton = $CancelButton
 $form.Controls.Add($CancelButton)
@@ -65,8 +80,10 @@ $form.Add_KeyDown{
 $result = $form.ShowDialog()
  
 if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
+    CheckUnsafe
     Get-Folder
 }
 if ($result -eq [System.Windows.Forms.DialogResult]::No) {
+    CheckUnsafe
     Get-File
 }
