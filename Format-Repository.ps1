@@ -15,23 +15,19 @@
     }
 }
 
-Function CheckUnsafe() {
-    if ($UnsafeMode.Checked) {
-        $msg = "This mode may lead to false correction of your code. Use with Caution!"
-        [System.Windows.Forms.MessageBox]::Show($msg,"Information",[System.Windows.Forms.MessageBoxButtons]::OK)
-    }
-}
-
 Function Get-File($initialDirectory) { 
     [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
 
     $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
     $OpenFileDialog.initialDirectory = $initialDirectory
-    $OpenFileDialog.filter = "AL files (*.al)|*.al"
+    $OpenFileDialog.filter = "AL Files (*.al)|*.al"
     if ($OpenFileDialog.ShowDialog() -eq "OK") {
         $folder += $OpenFileDialog.FileName
 		Set-Location "\\sitsrv061\WinFrame\Transfer\cir.al\StandaloneDevTools\TxtFormatter"
         .\Formatter.exe $folder $UnsafeMode.Checked
+    }
+    else {
+         .\Format-Repository.ps1
     }
 }
 
@@ -64,7 +60,7 @@ $form.Controls.Add($CancelButton)
 $label = New-Object System.Windows.Forms.Label
 $label.Location = New-Object System.Drawing.Point(10, 20)
 $label.Size = New-Object System.Drawing.Size(280, 50)
-$label.Text = "      Choose how you want to format your repository"
+$label.Text = "      Choose how you want to format your repository:"
 $form.Controls.Add($label)
 $form.Topmost = $true
 $form.KeyPreview = $true #This is the important part
@@ -80,10 +76,8 @@ $form.Add_KeyDown{
 $result = $form.ShowDialog()
  
 if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
-    CheckUnsafe
     Get-Folder
 }
 if ($result -eq [System.Windows.Forms.DialogResult]::No) {
-    CheckUnsafe
     Get-File
 }
