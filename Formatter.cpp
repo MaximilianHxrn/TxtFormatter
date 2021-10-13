@@ -71,6 +71,8 @@ void replaceAll(std::string &subject, const std::string &search, const std::stri
     {
         transform(temp_for_search.begin(), temp_for_search.end(), temp_for_search.begin(), ::toupper);
     }
+    // Copied from:
+    // https://stackoverflow.com/a/3418285/10821617
     size_t pos = 0;
     while ((pos = temp_for_search.find(search, pos)) != std::string::npos)
     {
