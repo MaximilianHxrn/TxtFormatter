@@ -1,7 +1,5 @@
 # TxtFormatter
 
-![Lines of code](https://img.shields.io/tokei/lines/github/shabib309/TxtFormatter)
-
 www.singhammer.com
 
 Aufbau des Codes

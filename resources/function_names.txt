@@ -107,7 +107,7 @@ IsCodeunit
 IsDate
 IsDateFormula
 IsDecimal
-IsEmpty
+.IsEmpty
 IsFile
 IsInstream
 IsInteger

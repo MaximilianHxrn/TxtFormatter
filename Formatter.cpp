@@ -35,21 +35,17 @@ list<string> readDict(string fileName)
             {
                 temp.push_back(line);
             }
-            else
-            {
-                cout << line << endl;
-            }
         }
         myfile.close();
     }
     else
     {
-        printf("%s is not open.", fileName);
+        printf("%s is not open.", fileName.c_str());
     }
     return temp;
 }
 
-std::string get_current_dir()
+string get_current_dir()
 {
     char buff[FILENAME_MAX]; //create string buffer to hold path
     GetCurrentDir(buff, FILENAME_MAX);
@@ -64,24 +60,19 @@ list<string> function_names = readDict(directory + "\\resources\\function_names.
 bool UnsafeMode = false;
 bool badWordFound = false;
 
-void replaceAll(std::string subject, std::string search, std::string replace)
+void replaceAll(string &subject, string search, string replace)
 {
-    string temp_for_search = subject;
-    if (UnsafeMode)
-    {
-        transform(temp_for_search.begin(), temp_for_search.end(), temp_for_search.begin(), ::toupper);
-    }
     // Copied from:
-    // https://stackoverflow.com/a/3418285/10821617
-    size_t pos = 0;
-    while ((pos = temp_for_search.find(search, pos)) != std::string::npos)
+    // https://thispointer.com/find-and-replace-all-occurrences-of-a-sub-string-in-c/
+    size_t pos = subject.find(search);
+    while (pos != string::npos)
     {
-        subject.replace(pos, search.length(), replace);
-        pos += replace.length();
+        subject.replace(pos, search.size(), replace);
+        pos = subject.find(search, pos + replace.size());
     }
 }
 
-std::string process(string temp)
+string process(string temp)
 {
     string next_help = "NEXT = 0";
     string next_help2 = "Next = 0";
@@ -135,8 +126,7 @@ std::string process(string temp)
                 if (function_name == good_word)
                 {
                     badWordFound = true;
-                    string then = string("() then");
-                    replaceAll(temp, search_function2, good_word + then);
+                    replaceAll(temp, search_function2, good_word + "() then");
                 }
             }
         }
@@ -163,15 +153,27 @@ void processFile(string fileName)
     }
     string temp = os.str();
     temp = process(temp.substr(0, temp.size() - 1));
-    // Copied from:
-    // https://stackoverflow.com/questions/11508798/conditionally-replace-regex-matches-in-string
     string temp_for_check = temp;
-    temp = regex_replace(temp, regex("\\)\n\\s*\\{\n\\s*\\}"), ") { }");
-    if (temp != temp_for_check)
+    try
     {
-        badWordFound = true;
+        // Copied from:
+        // https://stackoverflow.com/questions/11508798/conditionally-replace-regex-matches-in-string
+        temp = regex_replace(temp, regex("\\)\n\\s*\\{\n\\s*\\}"), string(") { }"));
+        auto iter = sregex_iterator(temp.begin(), temp.end(), regex("\\}"));
+        sregex_iterator end;
+        int pos;
+        while (iter != end)
+        {
+            pos = iter->position();
+            ++iter;
+        }
+        cout << temp.substr(pos) << endl;
     }
-    if (badWordFound)
+    catch (regex_error &e)
+    {
+        // do nothing
+    }
+    if (badWordFound || temp != temp_for_check)
     {
         ofstream write;
         write.open(fileName, ios::out | ios::binary);
@@ -180,7 +182,7 @@ void processFile(string fileName)
     }
 }
 
-bool hasEnding(std::string const &fullString, std::string const &ending)
+bool hasEnding(string const &fullString, string const &ending)
 {
     if (fullString.length() >= ending.length())
     {
@@ -224,8 +226,8 @@ void processFolder(string folder)
                 }
                 else
                 {
-                    std::string ws(fd.cFileName);
-                    std::string s(ws.begin(), ws.end());
+                    string ws(fd.cFileName);
+                    string s(ws.begin(), ws.end());
                     temp = process_path + s;
                 }
                 processFile(temp.c_str());
@@ -238,24 +240,24 @@ void processFolder(string folder)
 int main(int argc, char const *argv[])
 {
     cout << "Formatting..." << endl;
-    // if (strcmp(argv[2], "True") == 0)
-    // {
-    //     UnsafeMode = true;
-    // }
-    auto t1 = std::chrono::high_resolution_clock::now();
+    if (strcmp(argv[2], "True") == 0)
+    {
+        UnsafeMode = true;
+    }
+    auto t1 = chrono::high_resolution_clock::now();
     processFolder(argv[1]);
-    auto t2 = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::seconds>(t2 - t1).count();
+    auto t2 = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::seconds>(t2 - t1).count();
     if (duration == 0)
     {
-        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
-        std::cout << "\nExecution-Time: " << duration << " milliseconds.\n"
-                  << endl;
+        auto duration = chrono::duration_cast<chrono::milliseconds>(t2 - t1).count();
+        cout << "\nExecution-Time: " << duration << " milliseconds.\n"
+             << endl;
     }
     else
     {
-        std::cout << "\nExecution-Time: " << duration << " seconds.\n"
-                  << endl;
+        cout << "\nExecution-Time: " << duration << " seconds.\n"
+             << endl;
     }
     chrono::milliseconds dura(500);
     this_thread::sleep_for(dura);

@@ -18,7 +18,7 @@ Function Get-Folder($initialDirectory) {
 
 Function Get-File($initialDirectory) { 
     [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
-    #Set-Location "\\sitsrv061\WinFrame\Transfer\cir.al\StandaloneDevTools\TxtFormatter"
+    Set-Location "\\sitsrv061\WinFrame\Transfer\cir.al\StandaloneDevTools\TxtFormatter"
     $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
     $OpenFileDialog.initialDirectory = $startFolder
     $OpenFileDialog.filter = "AL Files (*.al)|*.al"

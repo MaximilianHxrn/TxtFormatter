@@ -103,7 +103,7 @@ ContextURL
 ControlAddin
 ControlType
 ConvertStr
-Copy
+.Copy
 CopyArray
 CopyFilter
 CopyFilters
@@ -314,7 +314,7 @@ IsCodeunit
 IsDate
 IsDateFormula
 IsDecimal
-IsEmpty
+.IsEmpty
 IsFile
 IsInstream
 IsInteger
