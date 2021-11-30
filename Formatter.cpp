@@ -64,7 +64,7 @@ list<string> function_names = readDict(directory + "\\resources\\function_names.
 bool UnsafeMode = false;
 bool badWordFound = false;
 
-void replaceAll(std::string &subject, const std::string &search, const std::string &replace)
+void replaceAll(std::string subject, std::string search, std::string replace)
 {
     string temp_for_search = subject;
     if (UnsafeMode)
@@ -124,7 +124,7 @@ std::string process(string temp)
                     {
                         new_function = "Next() = 0;";
                     }
-                    replaceAll(temp, search_function.c_str(), new_function);
+                    replaceAll(temp, search_function, new_function);
                 }
             }
         }
@@ -135,7 +135,8 @@ std::string process(string temp)
                 if (function_name == good_word)
                 {
                     badWordFound = true;
-                    replaceAll(temp, search_function2.c_str(), good_word + "() then");
+                    string then = string("() then");
+                    replaceAll(temp, search_function2, good_word + then);
                 }
             }
         }
@@ -237,10 +238,10 @@ void processFolder(string folder)
 int main(int argc, char const *argv[])
 {
     cout << "Formatting..." << endl;
-    if (strcmp(argv[2], "True") == 0)
-    {
-        UnsafeMode = true;
-    }
+    // if (strcmp(argv[2], "True") == 0)
+    // {
+    //     UnsafeMode = true;
+    // }
     auto t1 = std::chrono::high_resolution_clock::now();
     processFolder(argv[1]);
     auto t2 = std::chrono::high_resolution_clock::now();

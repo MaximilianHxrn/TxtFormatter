@@ -1,38 +1,31 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "Format Repository",
-            "type": "shell",
-            "command": "powershell.exe -File \\\\sitsrv061\\WinFrame\\Transfer\\cir.al\\StandaloneDevTools\\TxtFormatter\\Format-Repository.ps1 -WorkingDirectory \\\\sitsrv061\\WinFrame\\Transfer\\cir.al\\StandaloneDevTools\\TxtFormatter",
-            "problemMatcher": []
-        },
-        {
-            "type": "cppbuild",
-            "label": "C/C++: g++.exe Aktive Datei kompilieren",
-            "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
-            "args": [
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe",
-                "-static-libgcc",
-                "-static-libstdc++",
-                "-lpthread"
-            ],
-            "options": {
-                "cwd": "C:\\msys64\\mingw64\\bin"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "detail": "Compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
-        }
-    ]
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: g++.exe Aktive Datei kompilieren",
+			"command": "C:/cygwin64/bin/g++.exe",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"${file}",
+				"-o",
+				"${fileDirname}\\${fileBasenameNoExtension}.exe",
+				"-static-libgcc",
+				"-static-libstdc++",
+				"-lpthread"
+			],
+			"options": {
+				"cwd": "C:/cygwin64/bin"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "Compiler: C:/cygwin64/bin/g++.exe"
+		}
+	]
 }
