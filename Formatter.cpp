@@ -159,7 +159,8 @@ void processFile(string fileName)
         // Copied from:
         // https://stackoverflow.com/questions/11508798/conditionally-replace-regex-matches-in-string
         temp = regex_replace(temp, regex("\\)\n\\s*\\{\n\\s*\\}"), string(") { }"));
-        auto iter = sregex_iterator(temp.begin(), temp.end(), regex("\\}"));
+        regex bracket("\\}\n*");
+        sregex_iterator iter(temp.begin(), temp.end(), bracket);
         sregex_iterator end;
         int pos;
         while (iter != end)
@@ -167,7 +168,7 @@ void processFile(string fileName)
             pos = iter->position();
             ++iter;
         }
-        cout << temp.substr(pos) << endl;
+        temp = temp.substr(0, pos + 1);
     }
     catch (regex_error &e)
     {
