@@ -15,7 +15,6 @@ CalcFields
 CalcSum
 CalcSums
 CallFieldValidate
-Cancel
 ChangeCompany
 CheckLicenseFile
 Clear
