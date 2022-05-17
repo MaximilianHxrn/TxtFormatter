@@ -47,7 +47,7 @@ list<string> readDict(string fileName)
 
 string get_current_dir()
 {
-    char buff[FILENAME_MAX]; //create string buffer to hold path
+    char buff[FILENAME_MAX]; // create string buffer to hold path
     GetCurrentDir(buff, FILENAME_MAX);
     string current_working_dir(buff);
     return current_working_dir;
@@ -57,7 +57,6 @@ const string directory = get_current_dir();
 list<string> bad_words = readDict(directory + "\\resources\\bad_words.txt");
 list<string> good_words = readDict(directory + "\\resources\\good_words.txt");
 list<string> function_names = readDict(directory + "\\resources\\function_names.txt");
-bool UnsafeMode = false;
 bool badWordFound = false;
 
 void replaceAll(string &subject, string search, string replace)
@@ -77,10 +76,6 @@ string process(string temp)
     string next_help = "NEXT = 0";
     string next_help2 = "Next = 0";
     string temp_for_search = temp;
-    if (UnsafeMode)
-    {
-        transform(temp_for_search.begin(), temp_for_search.end(), temp_for_search.begin(), ::toupper);
-    }
     for (string bad_word : bad_words)
     {
         if (temp_for_search.find(bad_word) != string::npos)
@@ -233,6 +228,17 @@ void processFolder(string folder)
                 }
                 processFile(temp.c_str());
             }
+            else if ((fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+            {
+                std::string temp;
+                std::string ws(fd.cFileName);
+                std::string s(ws.begin(), ws.end());
+                temp = search_path.substr(0, search_path.length() - 1) + s;
+                if ((ws != ".") && (ws != ".."))
+                {
+                    processFolder(temp);
+                }
+            }
         } while (::FindNextFileA(hFind, &fd));
         ::FindClose(hFind);
     }
@@ -240,11 +246,7 @@ void processFolder(string folder)
 
 int main(int argc, char const *argv[])
 {
-    cout << "Formatting..." << endl;
-    if (strcmp(argv[2], "True") == 0)
-    {
-        UnsafeMode = true;
-    }
+    cout << "Formatting " << argv[1] << endl;
     auto t1 = chrono::high_resolution_clock::now();
     processFolder(argv[1]);
     auto t2 = chrono::high_resolution_clock::now();

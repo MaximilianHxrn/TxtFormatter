@@ -2,14 +2,14 @@
 
 Function Get-Folder($initialDirectory) {
     [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
-    Set-Location "\\sitsrv061\WinFrame\Transfer\cir.al\StandaloneDevTools\TxtFormatter"
+    Set-Location "C:\Repository\TxtFormatter"
     $foldername = New-Object System.Windows.Forms.FolderBrowserDialog
     $foldername.Description = "Select a folder"
     $foldername.rootfolder = "MyComputer"
     $foldername.SelectedPath = $startFolder
     if ($foldername.ShowDialog() -eq "OK") {
         $folder += $foldername.SelectedPath
-        .\Formatter.exe $folder $UnsafeMode.Checked
+        .\Formatter.exe '"' $folder '"'
     }
     else {
         .\Format-Repository.ps1
@@ -18,13 +18,13 @@ Function Get-Folder($initialDirectory) {
 
 Function Get-File($initialDirectory) { 
     [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
-    Set-Location "\\sitsrv061\WinFrame\Transfer\cir.al\StandaloneDevTools\TxtFormatter"
+    Set-Location "C:\Repository\TxtFormatter"
     $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
     $OpenFileDialog.initialDirectory = $startFolder
     $OpenFileDialog.filter = "AL Files (*.al)|*.al"
     if ($OpenFileDialog.ShowDialog() -eq "OK") {
         $folder += $OpenFileDialog.FileName
-        .\Formatter.exe $folder $UnsafeMode.Checked
+        .\Formatter.exe '"' $folder '"'
     }
     else {
          .\Format-Repository.ps1
@@ -35,7 +35,7 @@ Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 $form = New-Object System.Windows.Forms.Form
 $form.Text = 'Format Repository'
-$form.Size = New-Object System.Drawing.Size(300, 150)
+$form.Size = New-Object System.Drawing.Size(300, 125)
 $form.StartPosition = 'CenterScreen'
 $OKButton = New-Object System.Windows.Forms.Button
 $OKButton.Location = New-Object System.Drawing.Point(75, 50)
@@ -48,11 +48,6 @@ $CancelButton.Location = New-Object System.Drawing.Point(150, 50)
 $CancelButton.Size = New-Object System.Drawing.Size(75, 23)
 $CancelButton.Text = 'File'
 $CancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Ok
-$UnsafeMode = New-Object System.Windows.Forms.Checkbox 
-$UnsafeMode.Location = New-Object System.Drawing.Size(30, 85) 
-$UnsafeMode.Size = New-Object System.Drawing.Size(500, 20)
-$UnsafeMode.Text = "    Enable Unsafe Mode (case insensitive)"
-$UnsafeMode.TabIndex = 4
 $form.Controls.Add($UnsafeMode)
 $form.Controls.Add($CancelButton)
 $label = New-Object System.Windows.Forms.Label

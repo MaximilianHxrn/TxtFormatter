@@ -11,20 +11,17 @@
         },
         {
             "type": "cppbuild",
-            "label": "C/C++: g++.exe Aktive Datei kompilieren",
-            "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
+            "label": "C/C++: g++.exe build active file",
+            "command": "C:\\mingw64\\bin\\g++.exe",
             "args": [
+                "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe",
-                "-static-libgcc",
-				"-static-libstdc++",
-				"-lpthread",
-                "-std=c++11"
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "C:\\msys64\\mingw64\\bin"
+                "cwd": "C:\\mingw64\\bin"
             },
             "problemMatcher": [
                 "$gcc"
@@ -33,7 +30,7 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "Compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
+            "detail": "compiler: C:\\mingw64\\bin\\g++.exe"
         }
     ]
 }

@@ -4,7 +4,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:\\msys64\\mingw64\\bin\\**"
+                "C:\\mingw64\\bin\\**"
             ],
             "defines": [
                 "_DEBUG",
@@ -12,10 +12,10 @@
                 "_UNICODE"
             ],
             "windowsSdkVersion": "10.0.16299.0",
-            "cStandard": "c17",
-            "cppStandard": "c++17",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
             "intelliSenseMode": "${default}",
-            "compilerPath": "C:\\msys64\\mingw64\\bin\\g++.exe"
+            "compilerPath": "C:\\mingw64\\bin\\g++.exe"
         }
     ],
     "version": 4
